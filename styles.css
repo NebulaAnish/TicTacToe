@@ -1,0 +1,150 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+:root {
+    --cell-size: 200px;
+    --mark-size: calc(var(--cell-size)*.9);
+}
+
+body {
+    margin: 0;
+}
+
+.title {
+    color: black;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    font-size: 100px;
+    font-family: "Permanent Marker", cursive;
+}
+
+.board {
+    width: 100vw;
+    height: 70vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
+}
+
+.cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    background-color: black;
+    margin: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+
+}
+
+
+.board.x .cell:not(.x):not(.circle):hover {
+    background-color: gray;
+}
+
+/* .board.circle .cell:not(.x):not(.circle):hover,
+.board.circle .cell:not(.x):not(.circle)::after,
+.board.circle .cell:not(.x):not(.circle):hover::after {
+    background-color: red;
+} */
+
+.cell.x,
+.cell.circle {
+    cursor: not-allowed;
+}
+
+
+
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after {
+    content: "";
+    width: calc(var(--mark-size)*.15);
+    height: var(--mark-size);
+    background-color: white;
+    position: absolute;
+}
+
+.cell.x::before,
+.board.x .cell:not(.x):not(.circle):hover::before {
+    transform: rotate(45deg);
+}
+
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::after {
+    transform: rotate(-45deg);
+}
+
+.cell.circle::before,
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::before,
+.board.circle .cell:not(.x):not(.circle):hover::after {
+    content: "";
+    width: var(--mark-size);
+    height: var(--mark-size);
+    background-color: white;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.cell.circle::before,
+.board.circle .cell:not(.x):not(.circle):hover::before {
+    width: var(--mark-size);
+    height: var(--mark-size);
+}
+
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::after {
+    width: calc(var(--mark-size)*.7);
+    height: calc(var(--mark-size)*.7);
+    background-color: black;
+}
+
+
+.winning-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .9);
+
+    color: white;
+    font-size: 5rem;
+}
+
+.winning-message button {
+    font-size: 3rem;
+    background-color: white;
+    border: 2px solid black;
+    padding: .25em .5em;
+    cursor: pointer;
+    border-radius: 2%;
+    margin-top: 10px;
+}
+
+.winning-message button:hover {
+    /* font-size: 3rem; */
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+
+}
+
+.winning-message.show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
