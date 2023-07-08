@@ -148,3 +148,20 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+
+@media only screen and (max-width:900px) {
+    .cell {
+        height: 100px;
+        width: 100px;
+    }
+
+    .title {
+        font-size: 30px;
+    }
+
+    .board {
+        padding: 0;
+        height: 40vh;
+    }
+}
